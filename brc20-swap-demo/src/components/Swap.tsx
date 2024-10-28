@@ -7,8 +7,8 @@ import {handleError} from "../utils/utils";
 import {ReloadOutlined} from "@ant-design/icons";
 
 
-const tickIn = 'sats';
-const tickOut = 'ordi';
+const tickIn = 'test_sats';
+const tickOut = 'test_ordi';
 const slippage = '0.005'; // 0.5%
 
 
@@ -85,7 +85,7 @@ export function Swap() {
                 <Statistic
                     title={tickIn}
                     value={swapBalanceMap[tickIn]?.balance.swap || '0'}
-                    precision={6}
+                    precision={0}
                 />
                 {
                     // wait for confirm balance
@@ -117,7 +117,7 @@ export function Swap() {
             <Col span={12}>
                 <InputNumber
                     style={{width: '100%'}}
-                    addonAfter={'sats'}
+                    addonAfter={tickIn}
                     value={amountIn}
                     stringMode={true}
                     onChange={(e) => {
@@ -135,7 +135,7 @@ export function Swap() {
                     value={amountOut}
                     stringMode={true}
                     disabled={true}
-                    addonAfter={'ordi'}
+                    addonAfter={tickOut}
                 />
             </Col>
             <Col>

@@ -57,11 +57,14 @@ export default function UnisatProvider({children}: {
             }
 
             if (install) {
+                await unisatUtils.switchChain('FRACTAL_BITCOIN_TESTNET')
+
                 const address = await unisatUtils.getAccounts()
                 if (address) {
                     //     connected
                     setIsConnected(true)
                     setAddress(address)
+
                 }
             }
         }
@@ -72,7 +75,8 @@ export default function UnisatProvider({children}: {
 
     const connect = useCallback(async () => {
         try {
-            await unisatUtils.checkNetwork(NETWORK);
+            await unisatUtils.switchChain('FRACTAL_BITCOIN_TESTNET')
+
             const address = await unisatUtils.requestAccounts();
             if (address) {
                 setIsConnected(true)

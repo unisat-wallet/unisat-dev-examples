@@ -63,6 +63,7 @@ export type SwapReq = {
     exactType: ExactType;
     ts: number;
     sig?: string;
+    feeTick: string;
 };
 export type SwapRes = {
     id: string;
@@ -76,20 +77,17 @@ export type SwapRes = {
 }
 export type PreRes = {
     // signedMsg: string;
-    signMsg: string;
+    signMsgs: string[];
 } & FeeRes;
 
 export type FeeRes = {
-    bytesL1: number;
-    bytesL2: number;
-    feeRate: string; // l1
-    gasPrice: string; // l2
-    serviceFeeL1: string;
-    serviceFeeL2: string;
-    unitUsdPriceL1: string;
-    unitUsdPriceL2: string;
+    feeAmount: string;
+    feeTick: string;
+    feeTickPrice: string;
+    feeBalance: string;
 
-    serviceTickBalance: string;
+    originalFeeAmount: string;
+    freeQuota: string;
 };
 
 

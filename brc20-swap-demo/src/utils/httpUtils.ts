@@ -8,7 +8,7 @@ export function setApiKey(key: string) {
 }
 
 const api = axios.create({
-    baseURL: isTestnet ? "https://open-api-testnet.unisat.io" : "https://open-api.unisat.io/",
+    baseURL: isTestnet ? "https://open-api-fractal-testnet.unisat.io" : "https://open-api.unisat.io/",
     timeout: 10000,
     headers: {
         "Content-Type": "application/json",

@@ -15,7 +15,7 @@ function App() {
                         <li>Input your Api Key and refresh page</li>
                         <li>Connect UniSat wallet.</li>
                         <li>Click 'Deposit' tab, click 'Mint sats' to mint some sats.(<a
-                            href="https://coinfaucet.eu/btc-testnet/">get tBTC</a>)
+                            href="https://fractal-testnet.unisat.io/explorer/faucet">get tFB</a>)
                         </li>
                         <li>Choose 'sats' and click 'inscribe transfer' to create transfer-inscription</li>
                         <li>Choose one transfer-inscription to deposit(it may need some confirmations).</li>

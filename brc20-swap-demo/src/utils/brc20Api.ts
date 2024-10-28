@@ -21,7 +21,7 @@ export const brc20Api = {
         start?: number,
         limit?: number
     }): Promise<Brc20AddressTransferable> {
-        return get(`/v1/indexer/address/${address}/brc20/${stringToHex(tick)}/transferable-inscriptions`, {
+        return get(`/v1/indexer/address/${address}/brc20/${(tick)}/transferable-inscriptions`, {
             limit,
             start,
         })

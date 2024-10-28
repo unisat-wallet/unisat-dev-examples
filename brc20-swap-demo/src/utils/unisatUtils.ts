@@ -47,5 +47,8 @@ export const unisatUtils = {
     getPublicKey() {
         return window.unisat.getPublicKey();
     },
+    switchChain(network: string) {
+        return window.unisat.switchChain(network);
+    }
 
 }

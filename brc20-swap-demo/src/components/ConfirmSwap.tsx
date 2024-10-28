@@ -40,6 +40,7 @@ export function ConfirmSwap({
                 slippage,
                 exactType: ExactType.exactIn,
                 ts,
+                feeTick:'test_sats'
             }
             swapApi.preSwap(params).then(res => {
                 setSwapReqParams(params);
@@ -58,14 +59,24 @@ export function ConfirmSwap({
         if (!preSwap || !swapReqParams) return;
         setIsLoading(true);
         try {
-            const {signMsg} = preSwap;
+            const {signMsgs} = preSwap;
 
             //sign message
-            const sig = await signMessage(signMsg)
+            let sigs = [];
+            for (let i = 0; i < preSwap.signMsgs.length; i += 1) {
+                const signMsg = preSwap.signMsgs[i];
+
+                const sig = await  signMessage(signMsg);
+
+                sigs.push(sig);
+            }
+
 
             const params = {
                 ...swapReqParams,
-                sig,
+                sigs,
+                feeAmount: preSwap.feeAmount,
+                feeTickPrice: preSwap.feeTickPrice,
             }
 
             await swapApi.swap(params);
@@ -109,28 +120,9 @@ export function ConfirmSwap({
                         <Col span={10}>
                             <Statistic
                                 title="Rollup Fee"
-                                value={preSwap.serviceFeeL2}
+                                value={preSwap.feeAmount}
                                 precision={6}
                                 suffix={'sats'}
-                            />
-                        </Col>
-                        <Col span={1}>
-                            =
-                        </Col>
-                        <Col span={5}>
-                            <Statistic
-                                title="Tx Size"
-                                value={preSwap.bytesL2}
-                            />
-                        </Col>
-                        <Col span={1}>
-                            *
-                        </Col>
-                        <Col span={7}>
-                            <Statistic
-                                title="Gas Price"
-                                value={preSwap.gasPrice}
-                                precision={6}
                             />
                         </Col>
 

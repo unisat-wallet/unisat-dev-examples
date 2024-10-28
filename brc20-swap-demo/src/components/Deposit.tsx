@@ -101,7 +101,7 @@ export function Deposit() {
     return <>
         {
             <div style={{marginBottom: 16}}>
-                <a href={'https://testnet.unisat.io/brc20/sats'} target={"_blank"} rel="noreferrer">Mint sats</a>
+                <a href={'https://fractal-testnet.unisat.io/explorer/brc20/test_sats'} target={"_blank"} rel="noreferrer">Mint test_sats</a>
             </div>
         }
         {

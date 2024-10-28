@@ -24,6 +24,7 @@ export type UnisatWalletInterface = {
         ticker: string
     }>;
     getInscriptions(num: number): Promise<void>;
+    switchChain(network: string): Promise<void>;
 }
 
 declare global {
