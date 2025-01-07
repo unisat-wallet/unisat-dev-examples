@@ -64,6 +64,7 @@ export type SwapReq = {
     ts: number;
     sig?: string;
     feeTick: string;
+    payType: string;
 };
 export type SwapRes = {
     id: string;
