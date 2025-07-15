@@ -1,46 +1,53 @@
-# Getting Started with Create React App
+# UniSat Web3 Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project demonstrates how to interact with the UniSat Wallet API and browser extension using a React-based frontend. You can connect your wallet, view balances, send Bitcoin, sign messages, and more.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Connect to UniSat browser extension wallet
+- View Bitcoin and protocol asset balances
+- Send Bitcoin and inscriptions
+- Sign and push transactions
+- Multi-network support (Mainnet, Testnet, Signet, Fractal, etc.)
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 1. Install dependencies
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+yarn
+# or
+npm install
+```
 
-### `npm test`
+### 2. Run the app
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+yarn start
+# or
+npm start
+```
 
-### `npm run build`
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 3. Usage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Make sure you have the [UniSat Wallet extension](https://unisat.io/) installed.
+- Connect your wallet and follow the on-screen instructions.
+- For API details, see the [UniSat Developer Documentation](https://docs.unisat.io/).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Project Structure
 
-### `npm run eject`
+- `src/components/` - UI components for wallet actions
+- `src/page/` - Main pages (if present)
+- `src/const.ts` - Network and API endpoint configuration
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Resources
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [UniSat Developer Documentation](https://docs.unisat.io/)
+- [UniSat API Reference](https://open-api.unisat.io/)
+- [Telegram Dev Support](https://t.me/+w3I7K-OLj4JmODM1)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## License
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+MIT

@@ -42,6 +42,7 @@ export interface UTXO {
 
 interface InscriptionInfo {
   address: string;
+  inscriptionId: string;
   inscriptionNumber: number;
   contentType: string;
   utxo: UTXO;
@@ -372,6 +373,41 @@ export class OpenApi {
       orderId,
       psbt,
     });
+    return response;
+  }
+
+  async getBrc20TransferInscriptions(
+    address: string,
+    ticker: string,
+    start = 0,
+    limit = 16
+  ) {
+    const response = await this.axios.get<
+      null,
+      {
+        detail: [
+          {
+            confirmations: number;
+            data: {
+              amt: string;
+              decimal: string;
+              lim: string;
+              max: string;
+              minted: string;
+              op: string;
+              tick: string;
+            };
+            inscriptionId: string;
+            inscriptionNumber: number;
+          }
+        ];
+        height: number;
+        start: number;
+        total: number;
+      }
+    >(
+      `/v1/indexer/address/${address}/brc20/${ticker}/transferable-inscriptions?status=${start}&limit=${limit}`
+    );
     return response;
   }
 }

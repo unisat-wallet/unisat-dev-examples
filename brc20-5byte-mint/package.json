@@ -34,7 +34,9 @@
   },
   "dependencies": {
     "@unisat/wallet-sdk": "^1.4.0",
-    "axios": "^1.6.4"
+    "axios": "^1.6.4",
+    "bignumber.js": "^9.1.2",
+    "dataurl": "^0.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
