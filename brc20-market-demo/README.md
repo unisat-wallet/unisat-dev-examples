@@ -35,7 +35,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - Make sure you have the [UniSat Wallet extension](https://unisat.io/) installed.
 - Enter your UniSat OpenAPI Key (see [how to get an API Key](https://docs.unisat.io/dev/unisat-developer-service#getting-an-api-key)).
 - Connect your wallet and follow the on-screen instructions.
-- For API details, see the [UniSat Developer Documentation](https://docs.unisat.io/).
+- For API details, see the [UniSat BRC20 Marketplace API Documentation](https://github.com/unisat-wallet/unisat-dev-docs/blob/master/open-api/auto-generated/docs/brc20-marketplace.md).
 
 ## Project Structure
 
@@ -46,8 +46,8 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Resources
 
-- [UniSat Developer Documentation](https://docs.unisat.io/)
-- [UniSat API Reference](https://open-api.unisat.io/)
+- [UniSat BRC20 Marketplace API Documentation](https://github.com/unisat-wallet/unisat-dev-docs/blob/master/open-api/auto-generated/docs/brc20-marketplace.md)
+- [UniSat API Reference (Swagger UI)](https://open-api.unisat.io/)
 - [Telegram Dev Support](https://t.me/+w3I7K-OLj4JmODM1)
 
 ## License
