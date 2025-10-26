@@ -1,166 +1,190 @@
-import {get, post} from "./httpUtils";
-
+import { get, post } from "./httpUtils";
 
 export const swapApi = {
-    getAllBalance: (params: AllAddressBalanceReq): Promise<AllAddressBalanceRes> => get('/v1/brc20-swap/all_balance', params),
+  getAllBalance: (
+    params: AllAddressBalanceReq
+  ): Promise<AllAddressBalanceRes> => get("/v1/brc20-swap/all_balance", params),
 
-    quoteSwap: async (req: QuoteSwapReq): Promise<QuoteSwapRes> => {
-        return get('/v1/brc20-swap/quote_swap', req);
-    },
-    preSwap: async (req: SwapReq): Promise<PreRes> => {
-        return get('/v1/brc20-swap/pre_swap', req);
-    },
-    swap: async (req: SwapReq): Promise<SwapRes> => {
-        return post('/v1/brc20-swap/swap', req);
-    },
+  quoteSwap: async (req: QuoteSwapReq): Promise<QuoteSwapRes> => {
+    return get("/v1/brc20-swap/quote_swap", req);
+  },
+  preSwap: async (req: SwapReq): Promise<PreRes> => {
+    return get("/v1/brc20-swap/pre_swap", req);
+  },
+  swap: async (req: SwapReq): Promise<SwapRes> => {
+    return post("/v1/brc20-swap/swap", req);
+  },
 
-    createDeposit: async (req: CreateDepositReq): Promise<CreateDepositRes> => {
-        return get('/v1/brc20-swap/create_deposit', req);
-    },
+  createDeposit: async (req: CreateDepositReq): Promise<CreateDepositRes> => {
+    return get("/v1/brc20-swap/create_deposit", req);
+  },
 
-    confirmDeposit: async (req: ConfirmDepositReq): Promise<ConfirmDepositRes> => {
-        return post('/v1/brc20-swap/confirm_deposit', req);
-    },
-    preDeployPool(params: DeployPoolReq): Promise<PreRes> {
-        return get('/v1/brc20-swap/pre_deploy_pool', params)
-    },
-    deployPool(params: DeployPoolReq): Promise<DeployPoolRes> {
-        return post('/v1/brc20-swap/deploy_pool', params)
-    },
-    // 获取添加流动性的待签名信息
-    preAddLiquidity: (params: AddLiqReq): Promise<PreRes> => get('/v1/brc20-swap/pre_add_liq', params),
-    // 添加流动性
-    addLiquidity: (params: AddLiqReq): Promise<AddLiqRes> => post('/v1/brc20-swap/add_liq', params),
-}
+  confirmDeposit: async (
+    req: ConfirmDepositReq
+  ): Promise<ConfirmDepositRes> => {
+    return post("/v1/brc20-swap/confirm_deposit", req);
+  },
+  preDeployPool(params: DeployPoolReq): Promise<PreRes> {
+    return get("/v1/brc20-swap/pre_deploy_pool", params);
+  },
+  deployPool(params: DeployPoolReq): Promise<DeployPoolRes> {
+    return post("/v1/brc20-swap/deploy_pool", params);
+  },
+  // Get pre-add liquidity signing info
+  preAddLiquidity: (params: AddLiqReq): Promise<PreRes> =>
+    get("/v1/brc20-swap/pre_add_liq", params),
+  // Add liquidity
+  addLiquidity: (params: AddLiqReq): Promise<AddLiqRes> =>
+    post("/v1/brc20-swap/add_liq", params),
+};
 
 export enum ExactType {
-    exactIn = "exactIn",
-    exactOut = "exactOut",
+  exactIn = "exactIn",
+  exactOut = "exactOut",
 }
 
 export type QuoteSwapReq = {
-    address: string;
-    tickIn: string;
-    tickOut: string;
-    amount: string;
-    exactType: ExactType;
+  address: string;
+  tickIn: string;
+  tickOut: string;
+  amount: string;
+  exactType: ExactType;
 };
 
 export type QuoteSwapRes = {
-    expect: string;
-    amountUSD: string;
-    expectUSD: string;
+  expect: string;
+  amountUSD: string;
+  expectUSD: string;
 };
-
 
 export type SwapReq = {
-    address: string;
-    tickIn: string;
-    tickOut: string;
-    amountIn: string;
-    amountOut: string;
-    slippage: string;
-    exactType: ExactType;
-    ts: number;
-    sig?: string;
-    feeTick: string;
-    payType: string;
+  address: string;
+  tickIn: string;
+  tickOut: string;
+  amountIn: string;
+  amountOut: string;
+  slippage: string;
+  exactType: ExactType;
+  ts: number;
+  sig?: string;
+  feeTick: string;
+  payType: string;
+
+  assetFeeAmount?: string;
+  assetFeeTick?: string;
+  assetFeeTickPrice?: string;
 };
 export type SwapRes = {
-    id: string;
-    address: string;
-    tickIn: string;
-    tickOut: string;
-    amountIn: string;
-    amountOut: string;
-    exactType: ExactType;
-    ts: number;
-}
+  id: string;
+  address: string;
+  tickIn: string;
+  tickOut: string;
+  amountIn: string;
+  amountOut: string;
+  exactType: ExactType;
+  ts: number;
+};
 export type PreRes = {
-    // signedMsg: string;
-    signMsgs: string[];
-} & FeeRes;
+  ids: string[];
+  signMsgs: string[];
 
-export type FeeRes = {
-    feeAmount: string;
-    feeTick: string;
-    feeTickPrice: string;
-    feeBalance: string;
+  // feeTick
+  feeAmount: string;
+  feeTick: string;
+  feeTickPrice: string;
+  feeBalance: string;
 
-    originalFeeAmount: string;
-    freeQuota: string;
+  // free quota
+  totalFreeQuota: string;
+  remainingFreeQuota: string;
+  totalUsedFreeQuota: string;
+  usageFreeQuota: string;
+
+  usdPrice: string;
+  hasVoucher: boolean;
+
+  // swap tick
+  assetFeeAmount?: string;
+  assetFeeTick?: string;
+  assetFeeTickPrice?: string;
+  assetFeeTickBalance?: string;
 };
 
+export type FeeRes = {
+  feeAmount: string;
+  feeTick: string;
+  feeTickPrice: string;
+  feeBalance: string;
+
+  originalFeeAmount: string;
+  freeQuota: string;
+};
 
 interface CreateDepositReq {
-    inscriptionId: string,
-    address: string,
-    pubkey: string
+  inscriptionId: string;
+  address: string;
+  pubkey: string;
 }
 
 interface CreateDepositRes {
-    psbt: string;
-    type: "direct" | "matching";
-    expiredTimestamp: number;
-    recommendDeposit: string;
+  psbt: string;
+  type: "direct" | "matching";
+  expiredTimestamp: number;
+  recommendDeposit: string;
 }
 
-
 interface ConfirmDepositReq {
-    psbt: string,
-    inscriptionId: string
+  psbt: string;
+  inscriptionId: string;
 }
 
 interface ConfirmDepositRes {
-    txid: string;
-    pendingNum: number;
+  txid: string;
+  pendingNum: number;
 }
 
-
 export type DeployPoolReq = {
-    address: string;
-    tick0: string;
-    tick1: string;
-    ts: number;
-    sig?: string;
+  address: string;
+  tick0: string;
+  tick1: string;
+  ts: number;
+  sig?: string;
 };
 export type DeployPoolRes = {
-    //
+  //
 };
-
 
 export type AllAddressBalanceReq = {
-    address: string;
+  address: string;
 };
 export type AllAddressBalanceRes = {
-    [key: string]: {
-        balance: AddressBalance
-        decimal: string
-        withdrawLimit: string
-    };
+  [key: string]: {
+    balance: AddressBalance;
+    decimal: string;
+    withdrawLimit: string;
+  };
 };
 
 export type AddressBalance = {
-    module: string;             // 提现队列中的
-    swap: string;
-    pendingSwap: string;        // 充值未确认的
-    pendingAvailable: string;   // 提现未确认的
+  module: string; // In withdrawal queue
+  swap: string;
+  pendingSwap: string; // Pending deposit confirmation
+  pendingAvailable: string; // Pending withdrawal confirmation
 };
 
-
 export type AddLiqReq = {
-    address: string;
-    tick0: string;
-    tick1: string;
-    amount0: string;
-    amount1: string;
-    slippage: string;
-    ts: number;
-    lp: string;
-    sig?: string;
+  address: string;
+  tick0: string;
+  tick1: string;
+  amount0: string;
+  amount1: string;
+  slippage: string;
+  ts: number;
+  lp: string;
+  sig?: string;
 };
 
 export type AddLiqRes = {
-    id: string;
-    address: string;
+  id: string;
+  address: string;
 };
